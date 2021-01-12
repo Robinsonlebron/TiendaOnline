@@ -1,0 +1,123 @@
+﻿@model TiendaOnline.Models.Orden
+@{
+    ViewData["Title"] = "Detalles de Orden";
+}
+@*@using TiendaOnline.utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+
+    List<Producto> productos = HttpContextAccessor.HttpContext.Session.Get<List<Producto>>("producto");
+
+    if (productos == null)
+    {
+        productos = new List<Producto>();
+    }
+
+}*@
+
+
+<br />
+<h2 class="text-info">Detalles de Orden</h2>
+<form asp-action="CheckOut" method="post" enctype="multipart/form-data">
+    <div class="p-4 rounded border row">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+
+        </div>
+        <div class="col-6">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Name">Nombre: </label>
+                </div>
+                <div class="col-8">
+                    <input type="hidden" asp-for="Id" />
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+               
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="PhoneNo">Telefono: </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="PhoneNo" class="form-control" />
+                    <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                </div>
+               
+            </div>
+            
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Address">Direccion: </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+              
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="lat">Latitud: </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="lat" class="form-control" />
+                    <span asp-validation-for="lat" class="text-danger"></span>
+                </div>
+               
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="lng">Longitud: </label>
+                </div>
+                <div class="col-8">
+
+                    <input asp-for="lng" class="form-control" />
+                    <span asp-validation-for="lng" class="text-danger"></span>
+                </div>
+               
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Comentario">Comentario: </label>
+                </div>
+                <div class="col-8">
+
+                    <input asp-for="Comentario" class="form-control" />
+                    <span asp-validation-for="Comentario" class="text-danger"></span>
+                </div>
+              
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="OrderDate">Fecha: </label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="OrderDate" class="form-control" />
+                    <span asp-validation-for="OrderDate" class="text-danger"></span>
+                </div>
+               
+            </div>
+        </div>
+
+       
+            <div class="form-control text-right">
+                <br /><br />
+                <input type="submit" value="Pagar" class="btn btn-success" />
+                
+                 
+            
+            </div>
+      
+        </div>
+
+
+
+   
+</form>
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

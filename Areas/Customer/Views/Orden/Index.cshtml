@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TiendaOnline.Models.Orden>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Lista de Orden</h2>
+    </div>
+
+</div>
+
+<br />
+<div>
+    <table class="table table-striped border" >
+        <thead>
+            <tr class="table-info text-center">
+
+                <th>No Orden </th>
+                <th> Name </th>
+                <th>Correo </th>
+                <th> @Html.DisplayNameFor(c => c.Estado)</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.NoOrder</td>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+                <td>@item.Estado</td>
+                <td>
+                    <partial name="_ButtonPartial4" model="@item.Id" />
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

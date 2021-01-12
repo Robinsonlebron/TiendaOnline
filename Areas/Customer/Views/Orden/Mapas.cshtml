@@ -1,0 +1,49 @@
+﻿@using TiendaOnline.Models;
+@model IEnumerable<Orden>
+@{
+    ViewData["Title"] = "Mapa";
+}
+
+<h2> Mapa  con las ordenes</h2>
+
+<form asp-action="Mapas" method="post">
+    <select id="estado" name="estado">
+        <option value="Todas">Todas</option>
+        <option value="En proceso">En proceso</option>
+        <option value="Enviado">Enviado</option>
+        <option value="Completado">Completado</option>
+
+    </select>
+    <input type="submit" value="Consultar" />
+
+</form>
+
+<br />
+<p>Ordenes de estado: @ViewData["Estado"]</p>
+<br />
+<br />
+
+<div id="map" style="width:900px; height:500px; margin:0 auto;"></div>
+<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+<script src="~/js/Script.js"></script>
+
+
+
+@foreach (var item in Model)
+{
+
+
+    <script>
+            if ("@item.Estado" === "@ViewData["Estado"]" && "@ViewData["Estado"]" != 'Todas') {
+                L.marker([@item.lat, @item.lng], { draggable: true }).addTo(map)
+                    .bindPopup("Cliente: @item.Email <br> Estado: @item.Estado ")
+                    .openPopup();
+            }else if ("@ViewData["Estado"]" === 'Todas') {
+            L.marker([@item.lat, @item.lng], { draggable: true }).addTo(map)
+               .bindPopup("Cliente: @item.Email <br> Estado: @item.Estado ")
+                    .openPopup();
+                }
+    </script>
+
+}
+

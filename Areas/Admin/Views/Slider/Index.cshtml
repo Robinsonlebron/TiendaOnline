@@ -1,0 +1,67 @@
+﻿@model IEnumerable<TiendaOnline.Models.Slider>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Fotos del Slider</h2>
+    </div>
+    <div class="col-6 text-right">
+
+        <a asp-action="Create" style="color:black" class="btn btn-info">
+            <span class="glyphicon glyphicon-plus"></span> Nuevo Producto
+        </a>
+        @*<a asp-action="Create" class="btn btn-info">&nbsp; Nueva Foto</a>*@
+    </div>
+</div>
+
+<br />
+<div>
+    <table class="table table-striped border" id="myTable">
+        <thead>
+            <tr class="table-info text-center">
+                <th> Imagen</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.image</td>
+                    
+                    <td>
+                        <div class="btn btn-group">
+                           
+                            <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">
+                              
+                                <span class="glyphicon glyphicon-trash"></span> Borrar Imagen
+                            </a>
+
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section scripts{
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+        var save = '@TempData["save"]'
+
+        if (save != null) {
+            alertify.success(save);
+
+        }
+    });
+    </script>
+
+}

@@ -1,0 +1,44 @@
+﻿@model TiendaOnline.Areas.Admin.Model.RoleUservm
+@{
+    ViewData["Title"] = "Asignacion";
+}
+
+<br />
+<h2 class="text-info">Asignar Roles</h2>
+<form asp-action="Assign" method="post" enctype="multipart/form-data">
+    <div class="p-4 rounded border">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+
+        </div>
+        <h3>@ViewBag.msg</h3>
+     
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="UserId">Usuario: </label>
+            </div>
+            <div class="col-5">
+                <select asp-for="UserId" asp-items="ViewBag.UserId" class="form-control"></select>
+               
+            </div>
+            <span asp-validation-for="UserId" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="RoleId">Rol: </label>
+            </div>
+            <div class="col-5">
+                <select asp-for="RoleId" asp-items="ViewBag.RoleId" class="form-control"></select>
+              
+            </div>
+            <span asp-validation-for="RoleId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Asignar" />
+            <a asp-action="Index" class="btn btn-success">Ir a la lista</a>
+        </div>
+    </div>
+</form>
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

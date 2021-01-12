@@ -1,0 +1,89 @@
+﻿@model IEnumerable<TiendaOnline.Models.ApplicationUser>
+@{
+    ViewData["Title"] = "Agosto";
+}
+
+<br />
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Cumpleaños de Agosto</h2>
+    </div>
+</div>
+<br />
+<div>
+    <table class="table table-striped border" id="cumples">
+        <thead>
+            <tr class="table-info text-center">
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Nombre @item.Apellido</td>
+                    <td>@item.Email</td>
+                    <td>@item.datebirth</td>
+
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+
+        //DataTable
+        $(document).ready(function () {
+            $('#cumples').DataTable({
+                "language": idioma_espanol,
+                dom: 'Bfrtip',
+                buttons: [
+
+                    {
+                        extend: 'csv',
+                        text: 'CSV'
+                    }
+                ]
+            });
+        });
+
+        var idioma_espanol = {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            },
+            "buttons": {
+                "copy": "Copiar",
+                "colvis": "Visibilidad"
+            }
+        }
+
+    </script>
+
+}

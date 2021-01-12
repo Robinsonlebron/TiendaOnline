@@ -1,0 +1,35 @@
+﻿@model TiendaOnline.Models.ProductTypes
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+<br />
+<h2 class="text-info">Detalles tipo de Producto</h2>
+<form asp-action="Details" method="post">
+    <div class="p-4 rounded border">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ProductType">Tipo: </label>
+            </div>
+            <div class="col-5">
+                <input asp-for="ProductType" readonly="readonly" class="form-control" />
+            </div>
+            <span asp-validation-for="ProductType" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary">Editar</a>
+            <a asp-action="Index" class="btn btn-outline-success">Ir la lista</a>
+            @*<input type="submit" class="btn btn-success" value="Ir a la lista" />*@
+        </div>
+    </div>
+</form>
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+

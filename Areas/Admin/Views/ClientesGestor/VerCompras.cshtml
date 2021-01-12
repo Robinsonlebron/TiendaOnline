@@ -1,0 +1,51 @@
+﻿@using TiendaOnline.Models
+@model List<Carrito>
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<h1>Compras del Cliente</h1>
+
+
+<div class="row">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Imagen </th>
+                <th>Nombre </th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="~/@item.Producto.image" width="200" height="150" />
+                    </td>
+                    <td>@item.Producto.Name</td>
+                    <td>@item.Cantidad</td>
+                    <td>@item.Producto.Price  </td>
+
+                   
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    @*<div class="col-6">
+        <a asp-action="Index" asp-controller="Home" class="btn btn-success">Volver al principio</a>
+    </div>*@
+    <div class="col-6 text-right">
+        <h3>Cantidad Total</h3>
+        <h3>Total Cuenta: @Model.Sum(c => c.Producto.Price)</h3>
+        <a asp-area="Admin" asp-action="Index" asp-controller="ClientesGestor" class="btn btn-info">Volver a Lista de Clientes</a>
+       
+
+</div>
+
+</div>
+
